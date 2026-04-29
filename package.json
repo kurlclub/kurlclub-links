@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "format": "prettier --write .",
+    "check-lint": "eslint .",
+    "check-types": "tsc --pretty --noEmit",
+    "check-all": "npm run format && npm run check-lint && npm run check-types"
   },
   "dependencies": {
     "next": "16.2.4",
