@@ -11,7 +11,7 @@ import {
   FaMedium,
   FaPhone,
   FaSquareWhatsapp,
-  FaThreads,
+  FaXTwitter,
   FaYoutube,
 } from "react-icons/fa6";
 
@@ -44,7 +44,7 @@ const linkItems: LinkItem[] = [
     href: "https://www.kurlclub.com/enquiry",
     icon: FaCalendarCheck,
     iconColor: "text-emerald-400",
-    gridClass: "col-span-2 row-span-1 md:col-span-2 md:row-span-1",
+    gridClass: "col-span-1 row-span-1 sm:col-span-2 sm:row-span-1 md:col-span-2 md:row-span-1",
     toneClass: "from-emerald-500/20 to-emerald-900/20",
     feature: true,
   },
@@ -94,13 +94,13 @@ const linkItems: LinkItem[] = [
     toneClass: "from-[#00AB6C]/20 to-[#14532d]/10",
   },
   {
-    title: "Threads",
+    title: "Twitter / X",
     subtitle: "Quick updates and announcements",
-    href: "https://www.threads.net/@kurlclub",
-    icon: FaThreads,
+    href: "https://x.com/kurlclub",
+    icon: FaXTwitter,
     iconColor: "text-white",
     gridClass: "col-span-1 row-span-1",
-    toneClass: "from-white/20 to-white/5",
+    toneClass: "from-white/10 to-white/5",
   },
   {
     title: "WhatsApp",
@@ -114,7 +114,7 @@ const linkItems: LinkItem[] = [
   {
     title: "Facebook",
     subtitle: "Community highlights",
-    href: "https://www.facebook.com/kurlclub",
+    href: "https://www.facebook.com/profile.php?id=61584311866193",
     icon: FaFacebook,
     iconColor: "text-[#1877F2]",
     gridClass: "col-span-1 row-span-1",
@@ -126,7 +126,7 @@ const linkItems: LinkItem[] = [
     href: "tel:+917994990530",
     icon: FaPhone,
     iconColor: "text-lime-400",
-    gridClass: "col-span-2 row-span-1 md:col-span-2 md:row-span-1",
+    gridClass: "col-span-1 row-span-1 sm:col-span-2 sm:row-span-1 md:col-span-2 md:row-span-1",
     toneClass: "from-lime-500/20 to-lime-900/20",
     feature: true,
   },
@@ -197,8 +197,8 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="grid auto-rows-[96px] grid-cols-2 gap-3 sm:auto-rows-[106px] md:grid-cols-4 lg:col-span-12">
-          <div className="group relative col-span-2 row-span-2 overflow-hidden rounded-lg border border-white/15 bg-[#111b2b]/90 shadow-[0_20px_38px_rgba(0,0,0,0.35)] backdrop-blur-md md:col-span-2 md:row-span-2">
+        <div className="grid auto-rows-[96px] grid-cols-1 gap-3 sm:auto-rows-[106px] sm:grid-cols-2 md:grid-cols-4 lg:col-span-12">
+          <div className="group relative col-span-1 row-span-2 overflow-hidden rounded-lg border border-white/15 bg-[#111b2b]/90 shadow-[0_20px_38px_rgba(0,0,0,0.35)] backdrop-blur-md sm:col-span-2 md:col-span-2 md:row-span-2">
             <div className="absolute inset-0 bg-gradient-to-br from-rose-500/22 to-red-950/20 opacity-90" />
 
             <div className="relative h-full">
@@ -238,7 +238,11 @@ export default function Page() {
                 rel={
                   item.href.startsWith("http") ? "noopener noreferrer" : undefined
                 }
-                className={`group ${item.gridClass} relative overflow-hidden rounded-lg border border-white/12 bg-[#111a28]/90 p-3 shadow-[0_14px_30px_rgba(0,0,0,0.26)] backdrop-blur-md k-transition hover:-translate-y-1 hover:border-white/25`}
+                className={`group ${item.gridClass} relative overflow-hidden rounded-lg p-3 backdrop-blur-md k-transition hover:-translate-y-1 ${
+                    item.title === "Book A Product Demo"
+                      ? "border-2 border-emerald-300/75 ring-1 ring-emerald-300/35 bg-[#0f221b]/90 shadow-[0_10px_28px_rgba(0,0,0,0.28)] hover:border-emerald-200"
+                      : "border border-white/12 bg-[#111a28]/90 shadow-[0_14px_30px_rgba(0,0,0,0.26)] hover:border-white/25"
+                  }`}
               >
                 <div
                   className={`absolute inset-0 bg-gradient-to-br ${item.toneClass} opacity-80`}
