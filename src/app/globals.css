@@ -220,6 +220,18 @@ input:-webkit-autofill:active {
   font-size: 16px;
 }
 
+/* dark select dropdown options */
+select option,
+select optgroup {
+  background-color: #0e1320;
+  color: #ffffff;
+}
+select option:checked,
+select option:hover {
+  background-color: #1a2030;
+  color: #ffffff;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
