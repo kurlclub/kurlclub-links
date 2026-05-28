@@ -1,0 +1,119 @@
+{
+  "hero": {
+    "eyebrow": "Fitness Studio Software",
+    "title": "KurlClub",
+    "logo": "/uploads/logo-1779976160038-2ffaad0d9c1a.jpg",
+    "description": "A single destination for every channel your studio runs on. Grow visibility, answer leads faster, and keep your community connected.",
+    "tags": [
+      {
+        "label": "24×7 support",
+        "kind": "text",
+        "color": "#34d399"
+      },
+      {
+        "label": "India + GCC",
+        "kind": "text"
+      }
+    ]
+  },
+  "location": {
+    "chipLabel": "Calicut HQ",
+    "mapUrl": "https://maps.app.goo.gl/W7v8WQcmWHBUpMa96?g_st=ac",
+    "addressLines": [
+      "KurlTech Systems Private Limited",
+      "5th floor, Tower 1",
+      "Hilite Business park",
+      "Palazhi, Calicut",
+      "673014"
+    ],
+    "cardTitle": "KurlTech Systems Pvt Ltd",
+    "cardSubtitle": "5th floor, Tower 1, Hilite Business Park, Palazhi, Calicut 673014"
+  },
+  "featured": {
+    "eyebrow": "Featured",
+    "title": "Book a Product Demo",
+    "description": "Schedule a guided walkthrough with our team",
+    "href": "https://www.kurlclub.com/enquiry",
+    "icon": "FaCalendarCheck"
+  },
+  "contactItems": [
+    {
+      "id": "contact-website",
+      "title": "Visit Website",
+      "subtitle": "kurlclub.com",
+      "linkType": "url",
+      "value": "www.kurlclub.com",
+      "icon": "FaGlobe",
+      "iconColor": "#7dd3fc"
+    },
+    {
+      "id": "contact-call",
+      "title": "Call Us",
+      "subtitle": "+91 79949 90530",
+      "linkType": "phone",
+      "value": "+91 79949 90530",
+      "icon": "FaPhone",
+      "iconColor": "#fde047"
+    },
+    {
+      "id": "contact-whatsapp",
+      "title": "WhatsApp",
+      "subtitle": "Instant chat",
+      "linkType": "url",
+      "value": "wa.me/917994990530",
+      "icon": "FaSquareWhatsapp",
+      "iconColor": "#25D366"
+    }
+  ],
+  "socialItems": [
+    {
+      "id": "social-instagram",
+      "title": "Instagram",
+      "handle": "@kurlclub",
+      "href": "www.instagram.com/kurlclub/",
+      "icon": "FaInstagram",
+      "brandColor": "#E4405F"
+    },
+    {
+      "id": "social-linkedin",
+      "title": "LinkedIn",
+      "handle": "KurlClub",
+      "href": "www.linkedin.com/company/110242938/admin/dashboard/",
+      "icon": "FaLinkedin",
+      "brandColor": "#0A66C2"
+    },
+    {
+      "id": "social-youtube",
+      "title": "YouTube",
+      "handle": "@kurlclub",
+      "href": "www.youtube.com/@kurlclub",
+      "icon": "FaYoutube",
+      "brandColor": "#FF0000"
+    },
+    {
+      "id": "social-medium",
+      "title": "Medium",
+      "handle": "@kurlclub",
+      "href": "medium.com/@kurlclub",
+      "icon": "FaMedium",
+      "brandColor": "#00AB6C"
+    },
+    {
+      "id": "social-twitter",
+      "title": "Twitter / X",
+      "handle": "@kurlclub",
+      "href": "x.com/kurlclub",
+      "icon": "FaXTwitter",
+      "brandColor": "#ffffff"
+    },
+    {
+      "id": "social-facebook",
+      "title": "Facebook",
+      "handle": "KurlClub",
+      "href": "www.facebook.com/profile.php?id=61584311866193",
+      "icon": "FaFacebook",
+      "brandColor": "#1877F2"
+    }
+  ],
+  "footer": "© {year} KurlClub · Made with care in Calicut"
+}

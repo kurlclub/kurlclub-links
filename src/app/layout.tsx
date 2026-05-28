@@ -3,6 +3,7 @@ import { Figtree } from "next/font/google";
 import Script from "next/script";
 
 import "./globals.css";
+import { Providers } from "./providers";
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -156,7 +157,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={figtree.variable}>{children}</body>
+      <body className={figtree.variable}>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
