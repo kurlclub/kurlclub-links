@@ -1,18 +1,64 @@
-import { promises as fs } from "node:fs";
-import path from "node:path";
+import { list, put } from "@vercel/blob";
+
+import bundledLinks from "@/data/links.json";
 
 import type { LinksData } from "./links-types";
 
-const DATA_PATH = path.join(process.cwd(), "src", "data", "links.json");
+const BLOB_KEY = "links.json";
+const CACHE_TTL_MS = 15_000;
+
+let cache: { data: LinksData; expiresAt: number } | null = null;
+
+function getToken(): string | undefined {
+  return process.env.BLOB_READ_WRITE_TOKEN;
+}
 
 export async function readLinksData(): Promise<LinksData> {
-  const raw = await fs.readFile(DATA_PATH, "utf-8");
-  return JSON.parse(raw) as LinksData;
+  if (cache && cache.expiresAt > Date.now()) {
+    return cache.data;
+  }
+
+  const token = getToken();
+  if (!token) {
+    return bundledLinks as LinksData;
+  }
+
+  try {
+    const { blobs } = await list({ prefix: BLOB_KEY, token });
+    const match = blobs.find((b) => b.pathname === BLOB_KEY);
+    if (!match) {
+      return bundledLinks as LinksData;
+    }
+    const res = await fetch(match.url, { cache: "no-store" });
+    if (!res.ok) {
+      return bundledLinks as LinksData;
+    }
+    const data = (await res.json()) as LinksData;
+    cache = { data, expiresAt: Date.now() + CACHE_TTL_MS };
+    return data;
+  } catch {
+    return bundledLinks as LinksData;
+  }
 }
 
 export async function writeLinksData(data: LinksData): Promise<void> {
-  const serialized = JSON.stringify(data, null, 2);
-  await fs.writeFile(DATA_PATH, serialized + "\n", "utf-8");
+  const token = getToken();
+  if (!token) {
+    throw new Error(
+      "BLOB_READ_WRITE_TOKEN is not configured. Add it to your Vercel project env vars.",
+    );
+  }
+
+  await put(BLOB_KEY, JSON.stringify(data, null, 2) + "\n", {
+    access: "public",
+    contentType: "application/json",
+    allowOverwrite: true,
+    addRandomSuffix: false,
+    cacheControlMaxAge: 0,
+    token,
+  });
+
+  cache = { data, expiresAt: Date.now() + CACHE_TTL_MS };
 }
 
 function isNonEmptyString(value: unknown): value is string {

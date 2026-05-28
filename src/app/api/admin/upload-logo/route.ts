@@ -1,7 +1,6 @@
-import { promises as fs } from "node:fs";
-import path from "node:path";
 import crypto from "node:crypto";
 
+import { put } from "@vercel/blob";
 import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
@@ -17,6 +16,14 @@ const ALLOWED_EXT: Record<string, string> = {
 };
 
 export async function POST(req: Request) {
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!token) {
+    return NextResponse.json(
+      { error: "Storage not configured (missing BLOB_READ_WRITE_TOKEN)." },
+      { status: 500 },
+    );
+  }
+
   let form: FormData;
   try {
     form = await req.formData();
@@ -44,14 +51,15 @@ export async function POST(req: Request) {
     );
   }
 
-  const uploadsDir = path.join(process.cwd(), "public", "uploads");
-  await fs.mkdir(uploadsDir, { recursive: true });
-
   const slug = crypto.randomBytes(6).toString("hex");
-  const filename = `logo-${Date.now()}-${slug}.${ext}`;
-  const filePath = path.join(uploadsDir, filename);
+  const filename = `logos/logo-${Date.now()}-${slug}.${ext}`;
   const buffer = Buffer.from(await file.arrayBuffer());
-  await fs.writeFile(filePath, buffer);
 
-  return NextResponse.json({ path: `/uploads/${filename}` });
+  const blob = await put(filename, buffer, {
+    access: "public",
+    contentType: file.type,
+    token,
+  });
+
+  return NextResponse.json({ path: blob.url });
 }
